@@ -27,7 +27,7 @@ namespace MyNewService
             Authenticate();
             RetrieveQueues();
             Timer timer = new Timer();
-            timer.Interval = 60000; // 60 seconds
+            timer.Interval = 600000; // 10 minutes
             timer.Elapsed += new ElapsedEventHandler(this.OnTimer);
             timer.Start();
         }

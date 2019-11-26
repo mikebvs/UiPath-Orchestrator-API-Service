@@ -102,11 +102,7 @@ namespace MyNewService
             APIHandler core = new APIHandler(url, tenant, eventLog1, eventLog2, eventId1, eventId2);
             eventLog1.WriteEntry("API Handler Object Created", EventLogEntryType.Information, eventId1++);
 
-            //foreach(KeyValuePair<int,string> item in core.queues)
-            //{
-            //    eventLog1.WriteEntry("[" + item.Key.ToString() + "]Queue Name: " + item.Value.ToString());
-            //}
-
+            // SHIFTED THREADING TIMER TO APIHANDLER OBJECT
             // Set up a timer that triggers every minute.
             //Timer timer = new Timer();
             //timer.Interval = 60000; // 60 seconds
@@ -122,6 +118,7 @@ namespace MyNewService
 
         protected override void OnStop()
         {
+            // At the moment, these eventId's will be out of sync with those in the APIHandler Object which is undesirable
             // Update the service state to Stop Pending.
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOP_PENDING;
